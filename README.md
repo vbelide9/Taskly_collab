@@ -2,7 +2,7 @@
 
 Taskly is a modern, real-time task management application designed for seamless collaboration. Built with React and Firebase, it allows you to manage your personal tasks and collaborate on shared lists with friends and colleagues in real-time.
 
-![Taskly Screenshot](/Users/parvathibhavani/.gemini/antigravity/brain/4ded9146-564f-4876-a61f-1baff5f11bbf/uploaded_media_1769414775715.png)
+![Taskly Screenshot](screenshot.png)
 
 ## ✨ Key Features
 
