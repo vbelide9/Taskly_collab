@@ -129,6 +129,26 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
     const displayUsers = activeUsers.slice(0, 5); // Limit to 5 for UI space
     const remainingCount = activeUsers.length > 5 ? activeUsers.length - 5 : 0;
 
+    const [showInviteModal, setShowInviteModal] = useState(false);
+    const [inviteEmail, setInviteEmail] = useState('');
+    const inviteInputRef = useRef(null);
+
+    // Focus input when modal opens
+    useEffect(() => {
+        if (showInviteModal && inviteInputRef.current) {
+            inviteInputRef.current.focus();
+        }
+    }, [showInviteModal]);
+
+    const handleSendInvite = (e) => {
+        e.preventDefault();
+        if (inviteEmail && onInvite) {
+            onInvite(inviteEmail);
+            setShowInviteModal(false);
+            setInviteEmail('');
+        }
+    };
+
     return (
         <header className="header">
             <div className="header-top">
@@ -220,10 +240,7 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
                         <button
                             className="avatar add-member-btn"
                             id="tour-invite-btn"
-                            onClick={() => {
-                                const email = prompt("Enter email of user to invite:");
-                                if (email && onInvite) onInvite(email);
-                            }}
+                            onClick={() => setShowInviteModal(true)}
                             title="Invite Member"
                         >
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -240,6 +257,42 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
                     <strong>{completedCount}</strong> / {taskCount} tasks
                 </div>
             </div>
+
+            {/* Invite Modal */}
+            {showInviteModal && (
+                <div className="modal-overlay">
+                    <form className="modal-content" onSubmit={handleSendInvite}>
+                        <h3 className="modal-title">Invite Member</h3>
+                        <p style={{ marginBottom: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                            Enter the email address of the person you'd like to collaborate with.
+                        </p>
+                        <input
+                            ref={inviteInputRef}
+                            className="modal-input"
+                            type="email"
+                            placeholder="user@example.com"
+                            value={inviteEmail}
+                            onChange={(e) => setInviteEmail(e.target.value)}
+                            required
+                        />
+                        <div className="modal-actions">
+                            <button
+                                type="button"
+                                className="modal-btn modal-btn-cancel"
+                                onClick={() => {
+                                    setShowInviteModal(false);
+                                    setInviteEmail('');
+                                }}
+                            >
+                                Cancel
+                            </button>
+                            <button type="submit" className="modal-btn modal-btn-confirm">
+                                Send Invite
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
         </header>
     );
 }
