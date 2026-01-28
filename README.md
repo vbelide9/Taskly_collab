@@ -2,7 +2,20 @@
 
 # ⚡ Taskly Collaboration
 
-[![Taskly Demo](taskly_demo.webp)](https://taskly-collab.web.app)
+### 1. Personal Workflow & Dark Mode
+**User:** Chloe Anderson
+*Demonstrates signup, 6-step walkthrough, personal task management, and dark mode toggling.*
+[![Personal Demo](demo_video1.webp)](https://taskly-collab.web.app)
+
+### 2. Real-Time Collaboration
+**Users:** Ethan & Mia Johnson
+*Showcases shared lists, real-time task completion, progress updates, and online indicators.*
+[![Collaboration Demo](demo_video2.webp)](https://taskly-collab.web.app)
+
+### 3. Highlights & Quick Tour
+**Users:** Olivia & Noah Taylor
+*A combined look at quick signup, shared projects, and app theming.*
+[![Highlights Demo](demo_video3.webp)](https://taskly-collab.web.app)
 
 > **"A simple way for families to organize life together."**
 > Creates accounts, track personal to-dos, invite loved ones, and collaborate in real time—all in one place.
