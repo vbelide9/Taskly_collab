@@ -1,29 +1,19 @@
 # Taskly - Collaborative Reminders App
 
-# ⚡ Taskly Collaboration
+### 🎥 App Demo
+**Experience Taskly in Action**
+*A complete walkthrough of personal task management, real-time collaboration, and the premium user experience.*
 
-### 1. Personal Workflow & Dark Mode
-**User:** Chloe Anderson
-*Demonstrates signup, 6-step walkthrough, personal task management, and dark mode toggling.*
-[![Personal Demo](demo_video1.webp)](https://taskly-collab.web.app)
-
-### 2. Real-Time Collaboration
-**Users:** Ethan & Mia Johnson
-*Showcases shared lists, real-time task completion, progress updates, and online indicators.*
-[![Collaboration Demo](demo_video2.webp)](https://taskly-collab.web.app)
-
-### 3. Highlights & Quick Tour
-**Users:** Olivia & Noah Taylor
-*A combined look at quick signup, shared projects, and app theming.*
-[![Highlights Demo](demo_video3.webp)](https://taskly-collab.web.app)
 
 > **"A simple way for families to organize life together."**
 > Creates accounts, track personal to-dos, invite loved ones, and collaborate in real time—all in one place.
-Taskly is a modern, real-time task management application designed for seamless collaboration. Built with React and Firebase, it allows you to manage your personal tasks and collaborate on shared lists with friends and colleagues in real-time.
 
-![Taskly Screenshot](screenshot.png)
+A modern, collaborative to-do list application built with React and Firebase. It allows you to manage your personal tasks and collaborate on shared lists with friends and colleagues in real-time.
+
+
 
 ### 🎥 Feature Showcase
+https://github.com/user-attachments/assets/0afdde05-d405-45e0-8b49-bc12ae7f6ca7
 
 ## ✨ Key Features
 
