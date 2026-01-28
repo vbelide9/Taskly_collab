@@ -1,0 +1,130 @@
+.task-item {
+    background-color: var(--bg-card);
+    /* was white */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+}
+
+.task-item:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--primary);
+    /* Highlight border on hover? or var(--border) */
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.check-circle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.task-item.completed .check-circle {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.task-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-edit-input {
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0.25rem 0.5rem;
+    margin: -0.25rem -0.5rem;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+}
+
+.task-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-badge {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    background-color: #e5e7eb;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* Category specific colors can be added here */
+.category-badge.work {
+    background-color: #dbmjf9;
+    color: #7e22ce;
+}
+
+/* Purple-ish */
+.category-badge.personal {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* Blue-ish */
+.category-badge.design {
+    background-color: #fce7f3;
+    color: #be185d;
+}
+
+/* Pink-ish */
+.category-badge.general {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.task-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.delete-btn {
+    opacity: 0;
+    color: #9ca3af;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.task-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    color: #ef4444;
+    /* Red color for delete */
+}

@@ -1,0 +1,48 @@
+.filters-container {
+    background-color: var(--bg-gray);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.filter-btn.active {
+    background-color: var(--bg-card);
+    /* was white */
+    color: var(--text-main);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.count-badge {
+    background-color: #e5e7eb;
+    color: var(--text-secondary);
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+}
+
+.count-badge.green {
+    background-color: #ccfbf1;
+    color: var(--primary);
+}
+
+.circle-icon {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+}

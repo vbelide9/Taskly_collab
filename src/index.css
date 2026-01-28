@@ -1,0 +1,162 @@
+:root {
+  --primary: #2dd4bf;
+  --primary-hover: #14b8a6;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-gray: #f3f4f6;
+  --text-main: #111827;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --radius: 12px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body.dark-mode {
+  --primary: #2dd4bf;
+  /* Keep consistent or tweak? Teal looks okay on dark */
+  --primary-hover: #14b8a6;
+  --bg-page: #0f172a;
+  /* Slate 900 */
+  --bg-card: #1e293b;
+  /* Slate 800 */
+  --bg-gray: #334155;
+  /* Slate 700 */
+  --text-main: #f8fafc;
+  /* Slate 50 - Very White */
+  --text-secondary: #cbd5e1;
+  /* Slate 300 - Much lighter gray */
+  --border: #334155;
+  /* Slate 700 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  outline: none;
+  background-color: var(--bg-card);
+  /* Explicit background */
+  color: var(--text-main);
+  /* Explicit text color */
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+}
+
+/* Add support for placeholder color in dark mode */
+input::placeholder {
+  color: var(--text-secondary);
+}
+
+.container {
+  max-width: 800px;
+  /* Constrained width like the screenshot */
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Driver.js Theme Overrides */
+.driver-popover {
+  background-color: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  border-radius: 24px !important;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.driver-popover-title {
+  color: var(--text-main) !important;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.driver-popover-description {
+  color: var(--text-secondary) !important;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.driver-popover-progress-text {
+  color: var(--text-secondary) !important;
+}
+
+.driver-popover-navigation-btns {
+  gap: 8px;
+}
+
+.driver-popover-btn {
+  border-radius: 6px;
+  background-color: var(--bg-gray);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  text-shadow: none;
+  font-family: var(--font-family);
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+.driver-popover-btn:hover {
+  background-color: var(--border);
+}
+
+/* Primary "Next/Done" button */
+/* Primary "Next/Done" button - Stronger Selector */
+div.driver-popover .driver-popover-next-btn {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700 !important;
+  /* Rendering hacks */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.driver-popover-next-btn:hover {
+  background-color: var(--primary-hover) !important;
+}
+
+/* Close button */
+.driver-popover-close-btn {
+  color: var(--text-secondary);
+}
+
+.driver-popover-close-btn:hover {
+  color: var(--text-main);
+}

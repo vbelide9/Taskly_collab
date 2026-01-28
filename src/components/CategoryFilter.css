@@ -1,0 +1,227 @@
+.category-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.category-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    /* Was #1e293b */
+    margin-bottom: 0.5rem;
+    position: sticky;
+    left: 0;
+}
+
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-section-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    /* Was #64748b */
+    font-weight: 600;
+    margin-left: 0.25rem;
+}
+
+.category-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+/* Hide scrollbar but allow functionality */
+.category-filter::-webkit-scrollbar {
+    height: 4px;
+    /* Visible scrollbar for desktop usually nice, or hide */
+    display: none;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.category-chip-wrapper {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--bg-card);
+    /* was white */
+    border: 1px solid var(--border);
+    padding: 0 0.5rem 0 0;
+    transition: all 0.2s;
+}
+
+.category-chip-wrapper.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.category-chip-btn {
+    border: none;
+    background: none;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border-radius: 20px 0 0 20px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* "All" button uses this class directly */
+.category-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.category-chip.active {
+    color: white;
+    /* Text white on active primary bg */
+    border-color: var(--primary);
+}
+
+.category-chip-wrapper.active .category-chip-btn {
+    color: white;
+}
+
+.category-hover-delete-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    color: #ef4444;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s;
+    margin-left: 2px;
+}
+
+.category-chip-wrapper.active .category-hover-delete-btn {
+    color: white;
+    /* On active background, make it white or keep red? Red might clash. White is safer. */
+}
+
+/* Show delete on hover */
+.category-chip-wrapper:hover .category-hover-delete-btn {
+    opacity: 1;
+}
+
+.category-hover-delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+    /* faint red bg */
+    color: #ef4444 !important;
+}
+
+.category-add-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--bg-gray);
+    border: 1px dashed var(--border);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.category-add-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: white;
+}
+
+.category-add-input,
+.category-edit-input {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--primary);
+    font-size: 0.875rem;
+    width: 100px;
+    outline: none;
+    font-family: inherit;
+}
+
+.category-delete-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fee2e2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    margin-left: 4px;
+}
+
+.category-delete-btn:hover {
+    background-color: #ef4444;
+    color: white;
+}
+
+.sortable-category-wrapper {
+    display: inline-flex;
+    outline: none;
+    /* remove focus outline on drag handle if accessible */
+    touch-action: none;
+}
+
+.active-pill-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary);
+    border-radius: 20px;
+    z-index: 0;
+}
+
+/* Ensure text is above active background */
+.category-chip.active,
+.category-chip-wrapper.active {
+    background-color: transparent !important;
+    /* let motion div show */
+    border-color: transparent !important;
+    /* smooth transition? */
+}
+
+/* Need to override default active styles to be transparent so motion div is seen */
+.category-chip.active {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.category-chip-wrapper.active {
+    background-color: transparent;
+    border-color: transparent;
+}
