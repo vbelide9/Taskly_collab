@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useNavigate } from 'react-router-dom';
-import { collection, onSnapshot, query, where, documentId, doc, updateDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, where, documentId, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import './Header.css';
 
@@ -20,10 +20,10 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
             // Set stats to offline before logging out
             if (currentUser) {
                 const userRef = doc(db, 'users', currentUser.uid);
-                await updateDoc(userRef, {
-                    status: 'offline',
-                    lastSeen: null // invalidate lastSeen
-                });
+                // await updateDoc(userRef, {
+                //     status: 'offline',
+                //     lastSeen: null // invalidate lastSeen
+                // });
             }
             await logout();
             navigate('/login');
@@ -35,20 +35,41 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
         }
     }
 
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+
     const { deleteAccount } = useAuth();
-    async function handleDeleteAccount() {
-        if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-            try {
-                await deleteAccount();
-                navigate('/signup');
-                alert("Account deleted successfully.");
-            } catch (error) {
-                console.error("Failed to delete account", error);
-                if (error.code === 'auth/requires-recent-login') {
-                    alert("For security, you must re-login before deleting your account. Please log out and log back in.");
-                } else {
-                    alert("Failed to delete account: " + error.message);
+
+    function initiateDelete() {
+        setShowDeleteModal(true);
+        setShowDropdown(false);
+    }
+
+    async function confirmDelete() {
+        setIsDeleting(true);
+        try {
+            // 1. Delete User Data (Cleanup) - Best effort
+            if (currentUser) {
+                try {
+                    await deleteDoc(doc(db, 'users', currentUser.uid));
+                } catch (cleanupError) {
+                    console.error("Cleanup failed:", cleanupError);
                 }
+            }
+
+            // 2. Delete Auth Account
+            await deleteAccount();
+            navigate('/signup');
+            // No alert needed, redirect is enough feedback
+        } catch (error) {
+            console.error("Failed to delete account", error);
+            setIsDeleting(false);
+            if (error.code === 'auth/requires-recent-login') {
+                alert("Security: Please log out and back in to delete your account.");
+                await logout();
+                navigate('/login');
+            } else {
+                alert("Error: " + error.message);
             }
         }
     }
@@ -198,9 +219,10 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
                         <div className="dropdown-menu">
                             <div className="dropdown-header">
                                 <span className="dropdown-email">{userName}</span>
+                                <span style={{ fontSize: '0.7rem', color: '#9ca3af', display: 'block' }}>v1.3</span>
                             </div>
                             <div className="dropdown-divider"></div>
-                            <button onClick={handleDeleteAccount} className="dropdown-item delete-item">
+                            <button onClick={initiateDelete} className="dropdown-item delete-item">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M3 6h18"></path>
                                     <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
@@ -291,6 +313,34 @@ function Header({ taskCount, completedCount, currentList, onInvite, collaborator
                             </button>
                         </div>
                     </form>
+                </div>
+            )}
+            {/* Delete Confirmation Modal */}
+            {showDeleteModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3 className="modal-title" style={{ color: '#dc2626' }}>Delete Account?</h3>
+                        <p style={{ marginBottom: '1.5rem', color: 'var(--text-secondary)' }}>
+                            Are you sure you want to delete your account? This action cannot be undone and you will lose all your lists.
+                        </p>
+                        <div className="modal-actions">
+                            <button
+                                className="modal-btn modal-btn-cancel"
+                                onClick={() => setShowDeleteModal(false)}
+                                disabled={isDeleting}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="modal-btn"
+                                style={{ backgroundColor: '#dc2626', color: 'white' }}
+                                onClick={confirmDelete}
+                                disabled={isDeleting}
+                            >
+                                {isDeleting ? 'Deleting...' : 'Yes, Delete My Account'}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
         </header>

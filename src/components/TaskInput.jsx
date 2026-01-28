@@ -15,6 +15,7 @@ function TaskInput({ onAdd, categories = ['General', 'Work', 'Personal'], defaul
     const handleSubmit = (e) => {
         e.preventDefault();
         if (text.trim()) {
+            console.log('TaskInput submitting:', text, category); // Debug log
             onAdd(text, category);
             setText('');
             // Keep same category selected

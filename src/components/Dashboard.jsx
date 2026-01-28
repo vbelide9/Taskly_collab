@@ -130,6 +130,8 @@ function Dashboard() {
         return unsubscribe;
     }, [currentUser]);
 
+    const [taskRetry, setTaskRetry] = useState(0);
+
     // Fetch Tasks for Selected List
     useEffect(() => {
         if (!currentUser || !selectedList) {
@@ -142,12 +144,18 @@ function Dashboard() {
             const taskData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setTasks(taskData);
             setLoading(false);
+            // Reset retry count on success
+            if (taskRetry > 0) setTaskRetry(0);
         }, (error) => {
             console.error("Error fetching tasks:", error);
+            if (error.code === 'permission-denied' && taskRetry < 3) {
+                console.log(`Permission error (race condition). Retrying... (${taskRetry + 1}/3)`);
+                setTimeout(() => setTaskRetry(prev => prev + 1), 1000);
+            }
             setLoading(false);
         });
         return unsubscribe;
-    }, [currentUser, selectedList]);
+    }, [currentUser, selectedList, taskRetry]);
 
     // Check for Deleted Users (Existence Check)
     const [userExistence, setUserExistence] = useState({});
@@ -437,6 +445,12 @@ function Dashboard() {
         }
         try {
             const userName = currentUser.displayName || currentUser.email.split('@')[0];
+            console.log('Adding task:', text, 'to list:', selectedList); // Debug log
+            if (!selectedList.id) {
+                console.error("Selected list has no ID:", selectedList);
+                alert("Error: Selected list is invalid.");
+                return;
+            }
             await addDoc(collection(db, 'lists', selectedList.id, 'tasks'), {
                 text,
                 attributedTo: userName,

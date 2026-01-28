@@ -28,16 +28,28 @@
 }
 
 .count-badge {
-    background-color: #e5e7eb;
-    color: var(--text-secondary);
-    padding: 0.1rem 0.4rem;
+    background-color: #d1d5db;
+    /* Darker gray for better visibility */
+    color: #1f2937;
+    /* Darker text */
+    padding: 0.1rem 0.5rem;
     border-radius: 999px;
     font-size: 0.75rem;
+    font-weight: 700;
+    /* Bolder font */
 }
 
 .count-badge.green {
-    background-color: #ccfbf1;
-    color: var(--primary);
+    background-color: #bae6fd;
+    /* Light Blue for 'All' to distinguish */
+    color: #0369a1;
+    /* Dark Blue text */
+}
+
+/* Explicit gray class if needed, but base covers it */
+.count-badge.gray {
+    background-color: #e5e7eb;
+    color: #374151;
 }
 
 .circle-icon {
