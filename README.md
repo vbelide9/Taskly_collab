@@ -2,7 +2,7 @@
 
 # ⚡ Taskly Collaboration
 
-[![Taskly Demo](demo.webp)](https://taskly-collab.web.app)
+[![Taskly Demo](taskly_demo.webp)](https://taskly-collab.web.app)
 
 > **"A simple way for families to organize life together."**
 > Creates accounts, track personal to-dos, invite loved ones, and collaborate in real time—all in one place.
