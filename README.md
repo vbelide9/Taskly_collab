@@ -4,6 +4,9 @@ Taskly is a modern, real-time task management application designed for seamless 
 
 ![Taskly Screenshot](screenshot.png)
 
+### 🎥 Feature Showcase
+![Demo Walkthrough](demo.webp)
+
 ## ✨ Key Features
 
 ### 📋 Smart List Management
